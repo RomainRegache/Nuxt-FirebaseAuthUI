@@ -105,6 +105,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-dice-5',
+          title: 'Games',
+          to: '/game'
         }
       ],
       miniVariant: false,

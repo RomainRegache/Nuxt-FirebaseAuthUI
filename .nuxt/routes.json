@@ -1,0 +1,30 @@
+[
+  {
+    "name": "game",
+    "path": "/game",
+    "component": "C:\\\\Users\\\\regac\\\\VisualCode Projects\\\\firebase\\\\Nuxt-FirebaseAuthUI\\\\pages\\\\game.vue",
+    "chunkName": "pages/game",
+    "_name": "_0dfdfcfa"
+  },
+  {
+    "name": "inspire",
+    "path": "/inspire",
+    "component": "C:\\\\Users\\\\regac\\\\VisualCode Projects\\\\firebase\\\\Nuxt-FirebaseAuthUI\\\\pages\\\\inspire.vue",
+    "chunkName": "pages/inspire",
+    "_name": "_1a1d29fc"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "C:\\\\Users\\\\regac\\\\VisualCode Projects\\\\firebase\\\\Nuxt-FirebaseAuthUI\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_123b6c11"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\regac\\\\VisualCode Projects\\\\firebase\\\\Nuxt-FirebaseAuthUI\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_4893c8fa"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "DatePickerRange": {
+    "description": "Auto imported from components/DatePickerRange.vue"
+  },
+  "DialogAddGame": {
+    "description": "Auto imported from components/DialogAddGame.vue"
+  },
+  "GameCard": {
+    "description": "Auto imported from components/GameCard.vue"
+  },
+  "NuxtLogo": {
+    "description": "Auto imported from components/NuxtLogo.vue"
+  },
+  "SignIn": {
+    "description": "Auto imported from components/SignIn.vue"
+  },
+  "Tutorial": {
+    "description": "Auto imported from components/Tutorial.vue"
+  },
+  "VuetifyLogo": {
+    "description": "Auto imported from components/VuetifyLogo.vue"
+  }
+}

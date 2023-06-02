@@ -2,8 +2,7 @@ import colors from "vuetify/es5/util/colors";
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  mode: "spa",
-  //ssr: false,
+  ssr: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -40,21 +39,46 @@ export default {
   modules: [
     [
       "@nuxtjs/firebase",
-      {
+      {/*
         config: {
-          apiKey: "xxx",
-          authDomain: "xxx",
-          projectId: "xxx",
-          storageBucket: "xxx",
-          messagingSenderId: "xxx",
-          appId: "xxx",
-          measurementId: "xxx",
+          apiKey: "AIzaSyA9j9hOaUk-eIpQd_seFyg4ZjjzzazQQVs",
+          authDomain: "reservation-place.firebaseapp.com",
+          projectId: "reservation-place",
+          storageBucket: "reservation-place.appspot.com",
+          messagingSenderId: "690311015165",
+          appId: "1:690311015165:web:5232986e7a19f35c28ec94",
+          measurementId: "G-PTKV21W9ZV",
+          databaseURL: "https://reservation-place-default-rtdb.europe-west1.firebasedatabase.app/"
         },
         services: {
           auth: {
             initialize: {
               onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
             },
+            database: {
+              location: "https://reservation-place-default-rtdb.europe-west1.firebasedatabase.app/"
+            }
+          },
+        },*/
+        config: {
+          apiKey: "AIzaSyACzjFNg_jHIP1lklThhasmY5kXB9t2MnI",
+          authDomain: "lmbackyard.firebaseapp.com",
+          databaseURL: "https://lmbackyard-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "lmbackyard",
+          storageBucket: "lmbackyard.appspot.com",
+          messagingSenderId: "581546464216",
+          appId: "1:581546464216:web:0a3977ccf5daa9ad7598ad",
+          measurementId: "G-552YG7Q05Q",
+          databaseURL: "https://lmbackyard-default-rtdb.europe-west1.firebasedatabase.app/"
+        },
+        services: {
+          auth: {
+            initialize: {
+              onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
+            },
+            database: {
+              location: "https://lmbackyard-default-rtdb.europe-west1.firebasedatabase.app/"
+            }
           },
         },
       },
