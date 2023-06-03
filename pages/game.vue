@@ -44,6 +44,7 @@
         },
         games: [],
         reservations: [],
+        selectedDates: [],
       };
     },
     mounted() {
@@ -83,15 +84,42 @@
           
         },
         checkReservation() {
+          const startNewReservation = new Date(this.selectedDates[0])
+          const endNewReservation = new Date(this.selectedDates[1])
           this.reservations.forEach(reservation => {
-            
-          });
-          this.games.forEach(game => {
-            
+            console.log(reservation)
+            const start = new Date(reservation.dates?.start)
+            const end = new Date(reservation.dates?.end)
+            if (end < startNewReservation || start > endNewReservation) {
+                console.log('cestpossible')
+            }
+            else{
+              console.log("aie")
+              console.log(reservation.games)
+              console.log(Array.from(reservation.games, Element))
+              console.log(reservation.el)
+              const parent = reservation.el;
+              for (const game of parent.games) {
+                console.log(game);
+              }
+              [reservation.game].forEach(function callback(value, index) {
+                  console.log(index)
+                  console.log(value)
+              })
+            }
           });
         },
         dateEventHandler(data) {
           console.log(data)
+          let date1 = new Date(data[0])
+          let date2 = new Date(data[1])
+          if (date1 > date2) {
+            this.selectedDates = [data[1], data[0]]
+          }
+          else {
+            this.selectedDates = data
+          }
+          this.checkReservation()
         }
       },
       
