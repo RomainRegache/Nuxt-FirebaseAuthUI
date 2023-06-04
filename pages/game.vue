@@ -52,7 +52,11 @@
           get(child(dbRef, `games/`)).then((snapshot) => {
             if (snapshot.exists()) {
               console.log(snapshot.val());
-              this.games = snapshot.val()
+              var result = [];
+              for(var i in snapshot.val())
+                  result.push(snapshot.val() [i]);
+              console.log(result);
+              this.games = result
             } else {
               console.log("No data available");
             }
@@ -86,6 +90,7 @@
         checkReservation() {
           const startNewReservation = new Date(this.selectedDates[0])
           const endNewReservation = new Date(this.selectedDates[1])
+          let quantityReserved = []
           this.reservations.forEach(reservation => {
             console.log(reservation)
             const start = new Date(reservation.dates?.start)
@@ -94,20 +99,37 @@
                 console.log('cestpossible')
             }
             else{
-              console.log("aie")
-              console.log(reservation.games)
-              console.log(Array.from(reservation.games, Element))
-              console.log(reservation.el)
-              const parent = reservation.el;
-              for (const game of parent.games) {
-                console.log(game);
+              for (const game in reservation.games) {
+                console.log(`obj.${game} = ${reservation.games[game].quantity}`)
+                if (quantityReserved[game]) {
+                  if (quantityReserved[game] < reservation.games[game].quantity) {
+                    quantityReserved[game] = reservation.games[game].quantity
+                  }
+                }
+                else {
+                  quantityReserved[game] = reservation.games[game].quantity
+                }
               }
-              [reservation.game].forEach(function callback(value, index) {
-                  console.log(index)
-                  console.log(value)
-              })
             }
           });
+          return quantityReserved
+        },
+        checkAvailableGames(quantityReserved) {
+          let quantityAvailable = []
+          let quantityReservedPerGame = 0
+          console.log(quantityReserved)
+          this.games.forEach(game => {
+            try {
+              quantityReservedPerGame = quantityReserved[game.name]
+            }
+            catch {
+              console.log("pas de " + game.name)
+            }
+            quantityAvailable[game.name] = game.quantity - quantityReservedPerGame
+            game.available = game.quantity - quantityReservedPerGame
+          })
+          console.log(this.games)
+          return quantityAvailable
         },
         dateEventHandler(data) {
           console.log(data)
@@ -119,7 +141,9 @@
           else {
             this.selectedDates = data
           }
-          this.checkReservation()
+          const quantityReserved = this.checkReservation()
+          console.log(quantityReserved)
+          const quantityAvailable = this.checkAvailableGames(quantityReserved)
         }
       },
       
