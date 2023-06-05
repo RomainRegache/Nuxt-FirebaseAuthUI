@@ -3,7 +3,7 @@
     <div>
       <DatePickerRange @newDate="dateEventHandler"></DatePickerRange>
       <GameCard v-for="game in games" v-bind:name="game.name" v-bind:description="game.description"
-      v-bind:image="game.photo" v-bind:price="game.price"></GameCard>
+      v-bind:image="game.photo" v-bind:price="game.price" v-bind:quantity="game.available"></GameCard>
       <DialogAddGame></DialogAddGame>
       <h1>Ajouter un jeu</h1>
         <label for="name">Nom :</label>
@@ -51,11 +51,9 @@
       const dbRef = ref(getDatabase());
           get(child(dbRef, `games/`)).then((snapshot) => {
             if (snapshot.exists()) {
-              console.log(snapshot.val());
               var result = [];
               for(var i in snapshot.val())
-                  result.push(snapshot.val() [i]);
-              console.log(result);
+                result.push(snapshot.val() [i]);
               this.games = result
             } else {
               console.log("No data available");
@@ -65,7 +63,6 @@
           });
           get(child(dbRef, `reservations/`)).then((snapshot) => {
             if (snapshot.exists()) {
-              console.log(snapshot.val());
               this.reservations = snapshot.val()
             } else {
               console.log("No data available");
@@ -75,15 +72,6 @@
           });
     },
     methods: {
-        writeUserData() {
-            const db = getDatabase();
-            console.log(db)
-            set(ref(db, 'games/' + Math.round((Math.random()*100000)).toString()), {
-                name: this.game.name,
-                photo: this.game.photo,
-                description : this.game.description,
-                price1: this.game.price
-            })},
         readDataGames() {
           
         },
@@ -92,7 +80,6 @@
           const endNewReservation = new Date(this.selectedDates[1])
           let quantityReserved = []
           this.reservations.forEach(reservation => {
-            console.log(reservation)
             const start = new Date(reservation.dates?.start)
             const end = new Date(reservation.dates?.end)
             if (end < startNewReservation || start > endNewReservation) {
@@ -100,7 +87,6 @@
             }
             else{
               for (const game in reservation.games) {
-                console.log(`obj.${game} = ${reservation.games[game].quantity}`)
                 if (quantityReserved[game]) {
                   if (quantityReserved[game] < reservation.games[game].quantity) {
                     quantityReserved[game] = reservation.games[game].quantity
@@ -116,23 +102,23 @@
         },
         checkAvailableGames(quantityReserved) {
           let quantityAvailable = []
-          let quantityReservedPerGame = 0
-          console.log(quantityReserved)
           this.games.forEach(game => {
+            let quantityReservedPerGame = 0
             try {
               quantityReservedPerGame = quantityReserved[game.name]
             }
             catch {
               console.log("pas de " + game.name)
             }
+            if (quantityReservedPerGame === undefined) {
+              quantityReservedPerGame = 0
+            }
             quantityAvailable[game.name] = game.quantity - quantityReservedPerGame
             game.available = game.quantity - quantityReservedPerGame
           })
-          console.log(this.games)
           return quantityAvailable
         },
         dateEventHandler(data) {
-          console.log(data)
           let date1 = new Date(data[0])
           let date2 = new Date(data[1])
           if (date1 > date2) {
@@ -142,9 +128,8 @@
             this.selectedDates = data
           }
           const quantityReserved = this.checkReservation()
-          console.log(quantityReserved)
           const quantityAvailable = this.checkAvailableGames(quantityReserved)
-        }
+        },
       },
       
 

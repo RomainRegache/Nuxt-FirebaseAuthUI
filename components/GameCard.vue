@@ -4,6 +4,7 @@
       class="mx-3 my-3"
       max-width="374"
       style="display: inline-block;"
+      :disabled="quantity==0 ? '' : disabled"
     >
       <template slot="progress">
         <v-progress-linear
@@ -27,6 +28,7 @@
         </div>
   
         <div>{{ description }}</div>
+        <p>{{ quantity }}</p>
 
       </v-card-text>
   
@@ -46,7 +48,7 @@
 export default {
 
     name: "Game",
-    props: ["name", "description", "image", "price"],
+    props: ["name", "description", "image", "price", "quantity"],
 
   data: () => ({
     loading: false,

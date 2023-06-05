@@ -164,6 +164,7 @@ import { getDatabase , ref, set } from "firebase/database";
                 caution: this.game.caution,
                 photo: this.game.photo,
                 description : this.game.description,
+                available: 0,
             })}},
         readDataGames() {
           
